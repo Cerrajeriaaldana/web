@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}
+Listado de compras
+{% endblock %}
+
+{% block content %}
+
+<div class="container justify-content-center align-middle col-4 table-responsive" >   
+    <div class="row justify-content-center">
+        <div class="col">
+            <input class="form-control" type="text" id="searchInput" oninput="searchCompra(); searchInputEmptied();" placeholder="Buscar...">
+        </div>
+    </div>
+    <table id="tbl_compras" class="table table-hover ">
+        <tr>
+            <th>Compra</th>
+            <th>Fecha</th>
+            <th>Descripcion</th>
+            <th>Monto</th>
+        </tr>
+        {% for compra in compras %}
+        <tr>
+            <td>
+                <a class="btn" href="../compra/detalle/?id={{ compra.id }}"> 
+                    {{ compra.id }}
+                    <i class="bi bi-card-text"></i>
+                </a>
+            </td>
+            <td>{{ compra.fecha }}</td>
+            <td>
+            Compra de 
+            {% for detalle in detalles %}
+                {% if detalle.compra_numero == compra %}
+                   {{ detalle.id_producto.nombre }},
+                {% endif %}
+            {% endfor %}
+            </td>
+            <td>
+                Q{{ compra.total }}
+            </td>
+        </tr>
+        {% endfor %}
+        <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+                <td>Q{{ total }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<a class="btn" href="../compra/">
+    Registrar una nueva compra <i class="bi bi-file-plus"></i>
+</a>
+{% endblock %}
+
+{% block script %}
+<script>
+    function searchInputEmptied(){
+        var input = document.getElementById("searchInput");
+        if (input.value == ""){
+            var table = document.getElementById("tbl_compras");
+            var rows = table.getElementsByTagName("tr");
+            for (i = 0; i < rows.length; i++){
+                rows[i].style.display = "";
+            }
+        }
+    }
+
+    function searchCompra(){
+        var input = document.getElementById("searchInput");
+        
+    var table = document.getElementById("tbl_compras");
+    var rows = table.getElementsByTagName("tr");
+    
+    for (i = 0; i < rows.length; i++){
+        cells = rows[i].getElementsByTagName("td");
+        if (cells[0]){
+            if (cells[0].innerHTML.indexOf(input.value) > -1){
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+
+    input.focus();
+}
+</script>
+{% endblock %}

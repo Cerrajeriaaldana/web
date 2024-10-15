@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Buscar Clientes
+{% endblock %}
+
+{% block content %}
+<div class="container justify-content-center col-6">
+
+    <h1 class="">Resultados de Búsqueda</h1>
+    <div class="">
+        <form method="get" onsubmit="return validarFormulario()">
+            <input class="form-control" type="text" name="q" placeholder="Ingrese los datos aquí">
+            <select class="form-select" name="tipo">
+                <option value="nombre">Por Nombre</option>
+                <option value="nit">Por NIT</option>
+            </select>
+            <button class="btn btn-outline-dark" type="submit" class="search-button">Buscar <i class="bi bi-search"></i></button>
+        </form>
+        <div class="" id="mensaje-error" style="display: none;"></div>
+    </div>
+    <div class="">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>NIT</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr id="cliente-{{ cliente.nit }}">
+                    <td>{{ cliente.nit }}</td>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>
+                        <!-- Enlace para modificar cliente -->
+                        <a class="btn" href="#" onclick="modificarCliente('{{ cliente.nit }}')" >Modificar <i class="bi bi-pen"></i></a>
+                        <!-- Enlace para ver detalles -->
+                        <a class="btn" href="{% url 'detalles_cliente' cliente.nit %}">Detalles <i class="bi bi-card-text"></i></a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No se encontraron clientes.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        // Función para validar el formulario de búsqueda
+        function validarFormulario() {
+            var input = document.querySelector('input[name="q"]');
+            var select = document.querySelector('select[name="tipo"]');
+            var valor = input.value.trim();
+            var tipo = select.value;
+            var mensajeError = document.getElementById('mensaje-error');
+
+            if (valor === '') {
+                mensajeError.innerText = "Por favor, ingrese un valor.";
+                mensajeError.style.display = 'block';
+                return false;
+            }
+
+            if (tipo === 'nit' && !(/^\d+$/.test(valor))) {
+                mensajeError.innerText = "Por favor, ingrese un NIT válido (solo números enteros).";
+                mensajeError.style.display = 'block';
+                return false;
+            }
+
+            if (tipo === 'nombre' && !(/^[a-zA-Z\s]+$/.test(valor))) {
+                mensajeError.innerText = "Por favor, ingrese un nombre válido (solo letras y espacios).";
+                mensajeError.style.display = 'block';
+                return false;
+            }
+
+            mensajeError.style.display = 'none';
+            return true;
+        }
+
+        // Función para redirigir a la página principal
+        function goToHome() {
+            window.location.href = "/";
+        }
+
+        // Función para manejar el evento de clic en el botón "Modificar"
+        function modificarCliente(nit) {
+            window.location.href = `/modificar-cliente/${nit}/`;
+        }
+        
+    </script>
+{% endblock %}

@@ -1,0 +1,94 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-center">
+    <div class="container-fluid justify-content-center">
+        <ul class="navbar-nav ">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}"><i class="bi bi-house"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Compras</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'nueva_compra' %}">Registrar nueva</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'compras' %}">Ver todas</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Ventas</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'create_venta' %}">Registrar nueva</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'ventas' %}">Ver todos</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Productos</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'addproducts' %}">Registrar nuevo</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'viewproducts' %}">Ver todos</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'addcategoria' %}">Agregar categorias</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'addtipo' %}">Agregar tipo de producto</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'viewtipo' %}">Ver tipos</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'viewcategoria' %}">Ver categorias</a>
+                    </li>
+                    
+                </ul>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Proveedores</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'nuevo_proveedor' %}">Registrar nuevo</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'proveedores' %}">Ver todos</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Reportes</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'egresos' %}">Egresos</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'ingresos' %}">Ingresos</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Usuarios</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'usuarios' %}">Ver todos</a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="{% url 'signup' %}">Registrar nuevo usuario</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión: {{ request.session.usuario }}</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>

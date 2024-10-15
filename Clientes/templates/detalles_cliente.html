@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+    Detalles del Cliente
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'buscar_cliente' %}" class="btn">
+        <i class="bi bi-arrow-bar-left"></i> Regresar
+
+    </a>
+    <div class="container justify-content-center col-4">
+        <h1>Detalles del Cliente</h1>
+        <p><strong>NIT:</strong> <span class="bold">{{ cliente.nit }}</span></p>
+        <p><strong>Nombre:</strong> <span class="bold">{{ cliente.nombre }}</span></p>
+        <p><strong>Dirección:</strong> <span class="bold">{{ cliente.direccion }}</span></p>
+        <p><strong>Teléfono:</strong> <span class="bold">{{ cliente.telefono }}</span></p>
+        <h2>Compras realizadas</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Precio Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los datos se añadirán aquí -->
+                {% for factura in facturas %}
+                <tr>
+                    <td>{{ factura.fecha }}</td>
+                    <td>Q{{ factura.total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><strong>Total:</strong></td>
+                    <td><strong>Q{{ total }}</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}

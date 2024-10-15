@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Clientes
+{% endblock %}
+
+{% block content %}
+
+<div class="container justify-content-center col-6">
+  <h1>Clientes Registrados</h1>
+  <!-- Tabla de clientes -->
+  <table class="table table-hover" id="clientTable">
+    <!-- Encabezados de la tabla -->
+    <thead>
+      <tr>
+        <th>NIT</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <!-- Cuerpo de la tabla -->
+    <tbody>
+      {% for cliente in clientes %}
+        <tr>
+          <td>{{ cliente.nit }}</td>
+          <td>{{ cliente.nombre }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  
+{% endblock %}
+

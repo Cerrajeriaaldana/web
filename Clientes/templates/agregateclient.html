@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Agregar Cliente
+{% endblock %} 
+
+{% block content %}
+<div class="container justify-content-center col-6">
+
+    <h1>Agregar Cliente</h1>
+    {% if messages %}
+    <ul class="list-group">
+      {% for message in messages %}
+      <li class="list-group-item">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <form method="post" action="{% url 'agregar_cliente' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-outline-dark" type="submit">Guardar</button>
+    </form>
+  </div>
+{% endblock %}

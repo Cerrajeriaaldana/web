@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestión de Clientes</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f0e6d6;
+      color: #4d4d4d;
+      margin: 0;
+    }
+
+    header {
+      background-color: #8c7851;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 18px;
+    }
+
+    header a:hover {
+      color: #b8a178;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px);
+    }
+
+    .content {
+      background-color: #f5f5f5;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="{% url 'agregar_cliente' %}">Agregar Cliente</a>
+    <a href="#">Modificar Cliente</a>
+    <a href="{% url 'lista_clientes' %}">Lista de Clientes</a>
+    <a href="{% url 'buscar_cliente' %}">Buscar Cliente</a>
+</header>
+<main>
+    <div class="content">
+        <h2>Dango Store</h2>
+        <p>Esta Pestaña Se Encarga De La Gestion De Clientes Entre Otros Servicios</p>
+        <ul>
+            {% for cliente in clientes %}
+                <li>
+                    {{ cliente.nombre }} - <a href="{% url 'modificar_cliente' cliente.id %}">Modificar</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</main>
+
+</body>
+</html>

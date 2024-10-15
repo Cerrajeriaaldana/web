@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Clientes
+{% endblock %}
+
+{% block content %}
+    <div class="container justify-content-center col-6">
+        <h2>Dango Store</h2>
+        <p>Esta Pestaña Se Encarga De La Gestion De Clientes Entre Otros Servicios</p>
+        <ul class="list-group">
+            {% for cliente in clientes %}
+                <li class="list-group-item">
+                    {{ cliente.nombre }} - <a class="btn" href="{% url 'modificar_cliente' cliente.id %}">Modificar <i class="bi bi-info"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

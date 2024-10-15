@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Modificar Cliente
+{% endblock %}
+
+{% block content %}
+<div class="container justify-content-center col-6">
+        <h1>Modificar Cliente</h1>
+        <!-- Botón "Regresar" -->
+        <button class="btn btn-outline-dark" onclick="goBack()"><i class="bi bi-arrow-bar-left"></i>Regresar</button>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label class="form-label" for="nit">NIT:</label>
+                <input class="form-control" type="text" id="nit" name="nit" value="{{ cliente.nit }}" readonly>
+            </div>
+            <div>
+                <label class="form-label" for="nombre">Nombre:</label>
+                <input class="form-control" type="text" id="nombre" name="nombre" value="{{ cliente.nombre }}">
+            </div>
+            <div>
+                <label class="form-label" for="direccion">Dirección:</label>
+                <input class="form-control" type="text" id="direccion" name="direccion" value="{{ cliente.direccion }}">
+            </div>
+            <div>
+                <label class="form-label" for="telefono">Teléfono:</label>
+                <input class="form-control" type="text" id="telefono" name="telefono" value="{{ cliente.telefono }}">
+            </div>
+            <button class="btn btn-outline-dark" type="submit"><i class="bi bi-floppy"></i>Guardar</button>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        // Función para retroceder a la página anterior
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+{% endblock %}

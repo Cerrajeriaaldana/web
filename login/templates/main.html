@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}    
+<header>
+    <div class="container">
+        <nav>
+            <ul>
+
+                <link rel="stylesheet" href="../static/css/inicio.css"> <!-- Corregí la ruta del archivo CSS -->
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<section class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Compras</h5>
+                        <p class="card-text">Gestiona tus compras aquí.</p>
+                        <a href="{% url 'nueva_compra' %}" class="btn btn-primary">Ir a Compras</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Proveedores</h5>
+                        <p class="card-text">Gestiona tu Proveedores aquí.</p>
+                        <a href="{% url 'nuevo_proveedor' %}" class="btn btn-primary">Ir a Proveedores</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Productos</h5>
+                        <p class="card-text">Gestiona tus productos aquí.</p>
+                        <a href="{% url 'addproducts' %}" class="btn btn-primary">Ir a Productos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ventas</h5>
+                        <p class="card-text">Gestiona tus ventas aquí.</p>
+                        <a href="{% url 'create_venta' %}" class="btn btn-primary">Ir a Ventas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Reportes</h5>
+                        <p class="card-text">Genera tus reportes aquí.</p>
+                        <a href="{% url 'ingresos' %}" class="btn btn-primary">Ir a Reportes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
